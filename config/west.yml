@@ -2,10 +2,12 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: simtind
+      url-base: https://github.com/simtind
   projects:
     - name: zmk
-      remote: zmkfirmware
-      revision: main
+      remote: simtind
+      revision: simtind/add-nrf5340-tinderboard 
       import: app/west.yml
   self:
     path: config
