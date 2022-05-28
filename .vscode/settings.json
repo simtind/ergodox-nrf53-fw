@@ -1,5 +1,13 @@
 {
     "nrf-connect.applications": [
-        "${workspaceFolder}\\config"
-    ]
+        "${workspaceFolder}"
+    ],
+    "nrf-connect.boardRoots": [
+        "${workspaceFolder}",
+    ],
+    "files.associations": {
+        "*.tcc": "cpp",
+        "functional": "cpp",
+        "debug.h": "c"
+    }
 }

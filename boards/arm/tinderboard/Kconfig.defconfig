@@ -1,0 +1,75 @@
+# Copyright (c) 2022 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_TINDERBOARD
+
+	config BOARD
+		default "tinderboard"
+		
+	choice BT_HCI_BUS_TYPE
+		default BT_RPMSG if BT
+	endchoice
+
+	config HEAP_MEM_POOL_SIZE
+		default 4096 if BT_RPMSG
+
+	config BT_HCI_VS
+		default y if BT
+
+endif
+
+if BOARD_TINDERBOARD_CPUNET
+
+	config BOARD
+		default "tinderboard_cpunet"
+
+	# BT_CTLR depends on BT. When BT is enabled we should default to also
+	# enabling the controller.
+	config BT_CTLR
+		default y if BT
+
+	config BT_ECC
+		default y if BT
+
+endif
+
+
+config IPM_NRFX
+	default IPM
+
+config MBOX_NRFX_IPC
+	default MBOX
+
+config RPMSG_SERVICE_DUAL_IPM_SUPPORT
+	default RPMSG_SERVICE
+
+if RPMSG_SERVICE_DUAL_IPM_SUPPORT
+
+	config IPM_MSG_CH_0_ENABLE
+		default y
+
+	config IPM_MSG_CH_1_ENABLE
+		default y
+
+	config RPMSG_SERVICE_IPM_TX_NAME
+		default "IPM_0" if RPMSG_SERVICE_MODE_MASTER
+		default "IPM_1" if RPMSG_SERVICE_MODE_REMOTE
+
+	config RPMSG_SERVICE_IPM_RX_NAME
+		default "IPM_1" if RPMSG_SERVICE_MODE_MASTER
+		default "IPM_0" if RPMSG_SERVICE_MODE_REMOTE
+
+	config IPM_MSG_CH_0_TX
+		default RPMSG_SERVICE_MODE_MASTER
+
+	config IPM_MSG_CH_0_RX
+		default RPMSG_SERVICE_MODE_REMOTE
+
+	config IPM_MSG_CH_1_TX
+		default RPMSG_SERVICE_MODE_REMOTE
+
+	config IPM_MSG_CH_1_RX
+		default RPMSG_SERVICE_MODE_MASTER
+
+endif # RPMSG_SERVICE_DUAL_IPM_SUPPORT
+

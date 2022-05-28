@@ -1,0 +1,12 @@
+file_format: "1"
+id: blaatind
+name: Blaatind
+type: shield
+requires: [blaatind, tinderboard]
+exposes: [i2c_oled]
+features:
+  - keys
+  - display
+siblings:
+  - blaatind_left
+  - blaatind_right

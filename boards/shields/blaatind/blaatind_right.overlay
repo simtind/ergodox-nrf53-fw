@@ -1,0 +1,12 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include "blaatind.dtsi"
+
+&oled {
+	segment-remap;
+	com-invdir;
+};

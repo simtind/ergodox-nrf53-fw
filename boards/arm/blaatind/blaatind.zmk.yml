@@ -1,0 +1,9 @@
+file_format: "1"
+id: blaatind
+name: Ergodox board based on nRF5340
+type: board
+arch: arm
+outputs:
+  - usb
+  - ble
+exposes: [simtind_blaatind]

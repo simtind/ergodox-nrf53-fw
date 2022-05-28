@@ -4,7 +4,7 @@
 # control, add individual board + shield combinations to
 # the `include` property, e.g:
 #
-board: [ "nrf5340_tinderboard" ]
-shield: [ "nrf5340_tinderboard_left", "nrf5340_tinderboard_right" ]
+board: [ "tinderboard_nrf5340_cpuapp" ]
+shield: [ "tinderboard_nrf5340_cpuapp_left", "tinderboard_nrf5340_cpuapp_right" ]
 include:
-  - board: nrf5340_tinderboard
+  - board: tinderboard_nrf5340_cpuapp
