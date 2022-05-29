@@ -6,6 +6,6 @@ jobs:
     with:
       build_matrix_path: config/build.yaml
       config_path: config
-      extra_cmake_args: -DBOARD_ROOT=\"${GITHUB_WORKSPACE}\"
+      extra_cmake_args: -DBOARD_ROOT=\"${GITHUB_WORKSPACE}\" -DCONF_FILE=\"${GITHUB_WORKSPACE}/prj.conf\"
       fallback_binary: hex
       output_name: merged
