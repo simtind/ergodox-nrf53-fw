@@ -6,7 +6,7 @@
 
 #include "blaatind.dtsi"
 
-&oled {
-	segment-remap;
-	com-invdir;
-};
+// &oled {
+// 	segment-remap;
+// 	com-invdir;
+// };
