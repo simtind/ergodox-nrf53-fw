@@ -8,6 +8,7 @@ jobs:
       config_path: config_app
       extra_cmake_args: -DBOARD_ROOT=\"${GITHUB_WORKSPACE}\"
       fallback_binary: elf
+      output_name: zmk
   build_net:
     uses: ./.github/workflows/build_image.yml
     with:
@@ -16,3 +17,4 @@ jobs:
       config_path: config_net
       extra_cmake_args: -DBOARD_ROOT=\"${GITHUB_WORKSPACE}\"
       fallback_binary: elf
+      output_name: zephyr

@@ -18,6 +18,11 @@ on:
         default: "bin"
         required: false
         type: string
+      output_name:
+        description: "Build output file name, without extension"
+        default: "zmk"
+        required: false
+        type: string
       artifact_name:
         description: 'Artifact output file name'
         default: 'firmware'
@@ -122,12 +127,12 @@ jobs:
         run: |
           set -x
           mkdir build/artifacts
-          if [ -f build/zephyr/zmk.uf2 ]
+          if [ -f build/zephyr/${{ inputs.output_name }}.uf2 ]
           then
-            cp build/zephyr/zmk.uf2 "build/artifacts/${{ steps.variables.outputs.artifact-name }}.uf2"
-          elif [ -f build/zephyr/*.${{ inputs.fallback_binary }} ]
+            cp build/zephyr/${{ inputs.output_name }}.uf2 "build/artifacts/${{ steps.variables.outputs.artifact-name }}.uf2"
+          elif [ -f build/zephyr/${{ inputs.output_name }}.${{ inputs.fallback_binary }} ]
           then
-            cp build/zephyr/*.${{ inputs.fallback_binary }} "build/artifacts/${{ steps.variables.outputs.artifact-name }}.${{ inputs.fallback_binary }}"
+            cp build/zephyr/${{ inputs.output_name }}.${{ inputs.fallback_binary }} "build/artifacts/${{ steps.variables.outputs.artifact-name }}.${{ inputs.fallback_binary }}"
           fi
       - name: Archive (${{ steps.variables.outputs.display-name }})
         uses: actions/upload-artifact@v2
