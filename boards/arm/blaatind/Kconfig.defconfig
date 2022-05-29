@@ -4,21 +4,26 @@
 if BOARD_BLAATIND_CPUAPP
 
 	config BOARD
-		default "blaatind_cpuapp"
+		default "blaatind_cpuapp" if BOARD_BLAATIND_CPUAPP
+
+	config ENTROPY_BT_HCI
+		default y if BT_HCI_HOST
+		depends on ENTROPY_GENERATOR
+
+	DT_CHOSEN_Z_CODE_PARTITION := zephyr,code-partition
+	DT_CHOSEN_Z_SRAM_PARTITION := zephyr,sram-secure-partition
+
+	config FLASH_LOAD_SIZE
+		default $(dt_chosen_reg_size_hex,$(DT_CHOSEN_Z_CODE_PARTITION))
+
+	config SRAM_SIZE
+		default $(dt_chosen_reg_size_int,$(DT_CHOSEN_Z_SRAM_PARTITION),0,K)
+
 endif
 
-if BOARD_BLAATIND_CPUNET
+config BOARD
+	default "blaatind_cpunet" if BOARD_BLAATIND_CPUNET
 
-	config BOARD
-		default "blaatind_cpunet"
-
-endif
-
-
-config ENTROPY_BT_HCI
-	default y if BT_HCI_HOST
-	depends on ENTROPY_GENERATOR
-    
 config IPM_NRFX
 	default IPM
 

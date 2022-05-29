@@ -1,20 +1,5 @@
 
 if BOARD_BLAATIND_CPUAPP
-
-    config BOARD_ENABLE_CPUNET
-        bool "Enable nRF53 Network MCU"
-        help
-        This option enables releasing the Network 'force off' signal, which
-        as a consequence will power up the Network MCU during system boot.
-        Additionally, the option allocates GPIO pins that will be used by UARTE
-        of the Network MCU.
-        Note: GPIO pin allocation can only be configured by the secure Application
-        MCU firmware, so when this option is used with the non-secure version of
-        the board, the application needs to take into consideration, that the
-        secure firmware image must already have configured GPIO allocation for the
-        Network MCU.
-        default y if (BT || NRF_802154_SER_HOST)
-
         
     config BOARD_ENABLE_DCDC_APP
         bool "Application MCU DCDC converter"
@@ -31,17 +16,31 @@ if BOARD_BLAATIND_CPUAPP
         select SOC_DCDC_NRF53X_HV
         default y
 
-endif # BOARD_BLAATIND_CPUAPP
+    config BOARD_ENABLE_CPUNET
+        bool "Enable nRF53 Network MCU"
+        help
+        This option enables releasing the Network 'force off' signal, which
+        as a consequence will power up the Network MCU during system boot.
+        Additionally, the option allocates GPIO pins that will be used by UARTE
+        of the Network MCU.
+        Note: GPIO pin allocation can only be configured by the secure Application
+        MCU firmware, so when this option is used with the non-secure version of
+        the board, the application needs to take into consideration, that the
+        secure firmware image must already have configured GPIO allocation for the
+        Network MCU.
+        default y if (BT || NRF_802154_SER_HOST)
 
-config DOMAIN_CPUNET_BOARD
-    string
-    default "blaatind_cpunet"
-    depends on BOARD_ENABLE_CPUNET
-    help
-    The board which will be used for CPUNET domain when creating a multi
-    image application where one or more images should be located on
-    another board. For example hci_rpmsg on the nRF5340_cpunet for
-    Bluetooth applications.
+    config DOMAIN_CPUNET_BOARD
+        string
+        default "blaatind_cpunet"
+        depends on BOARD_ENABLE_CPUNET
+        help
+        The board which will be used for CPUNET domain when creating a multi
+        image application where one or more images should be located on
+        another board. For example hci_rpmsg on the nRF5340_cpunet for
+        Bluetooth applications.
+
+endif # BOARD_BLAATIND_CPUAPP
 
 config DOMAIN_CPUAPP_BOARD
 	string

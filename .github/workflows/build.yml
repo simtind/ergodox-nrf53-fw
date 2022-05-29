@@ -1,20 +1,11 @@
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  build_app:
+  build:
     uses: ./.github/workflows/build_image.yml
     with:
-      build_matrix_path: config_app/build.yaml
-      config_path: config_app
+      build_matrix_path: config/build.yaml
+      config_path: config
       extra_cmake_args: -DBOARD_ROOT=\"${GITHUB_WORKSPACE}\"
-      fallback_binary: elf
-      output_name: zmk
-  build_net:
-    uses: ./.github/workflows/build_image.yml
-    with:
-      application: zephyr/samples/bluetooth/hci_rpmsg
-      build_matrix_path: config_net/build.yaml
-      config_path: config_net
-      extra_cmake_args: -DBOARD_ROOT=\"${GITHUB_WORKSPACE}\"
-      fallback_binary: elf
-      output_name: zephyr
+      fallback_binary: hex
+      output_name: merged
