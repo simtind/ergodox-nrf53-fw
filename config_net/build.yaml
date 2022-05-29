@@ -5,4 +5,4 @@
 # the `include` property, e.g:
 #
 board: [ "blaatind_cpunet" ]
-shield: [ ]
+shield: [ "" ]
