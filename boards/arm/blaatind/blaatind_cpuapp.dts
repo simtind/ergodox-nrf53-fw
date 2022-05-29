@@ -6,8 +6,8 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 
 / {
-	model = "tinderboard";
-	compatible = "simtind,tinderboard";
+	model = "blaatind_cpuapp";
+	compatible = "simtind,blaatind_cpuapp";
 
 	chosen {
 		zephyr,sram = &sram0;
@@ -127,9 +127,16 @@
 	status = "okay";
 };
 
+&i2c0 {
+	compatible = "nordic,nrf-twim";
+	status = "okay";
+	sda-pin = <34>;
+	scl-pin = <35>;
+};
+
 zephyr_udc0: &usbd {
 	compatible = "nordic,nrf-usbd";
 	status = "okay";
 };
 
-#include "tinderboard_shared_sram_planning_conf.dts"
+#include "blaatind_shared_sram_planning_conf.dts"

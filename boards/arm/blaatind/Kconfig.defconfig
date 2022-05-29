@@ -1,19 +1,86 @@
 # Copyright (c) 2022 Nordic Semiconductor ASA
 # SPDX-License-Identifier: Apache-2.0
 
-if BOARD_BLAATIND
+if BOARD_BLAATIND_CPUAPP
 
 	config BOARD
-		default "blaatind"
+		default "blaatind_cpuapp"
+endif
+
+if BOARD_BLAATIND_CPUNET
+
+	config BOARD
+		default "blaatind_cpunet"
+
+endif
 
 
-	config ZMK_KEYBOARD_NAME
-		default "blaatind"
+config ENTROPY_BT_HCI
+	default y if BT_HCI_HOST
+	depends on ENTROPY_GENERATOR
+    
+config IPM_NRFX
+	default IPM
 
-	config ZMK_BLE
+config MBOX_NRFX_IPC
+	default MBOX
+
+config RPMSG_SERVICE_DUAL_IPM_SUPPORT
+	default RPMSG_SERVICE
+
+if RPMSG_SERVICE_DUAL_IPM_SUPPORT
+
+	config IPM_MSG_CH_0_ENABLE
 		default y
 
-	config ZMK_USB
+	config IPM_MSG_CH_1_ENABLE
 		default y
+
+	config RPMSG_SERVICE_IPM_TX_NAME
+		default "IPM_0" if RPMSG_SERVICE_MODE_MASTER
+		default "IPM_1" if RPMSG_SERVICE_MODE_REMOTE
+
+	config RPMSG_SERVICE_IPM_RX_NAME
+		default "IPM_1" if RPMSG_SERVICE_MODE_MASTER
+		default "IPM_0" if RPMSG_SERVICE_MODE_REMOTE
+
+	config IPM_MSG_CH_0_TX
+		default RPMSG_SERVICE_MODE_MASTER
+
+	config IPM_MSG_CH_0_RX
+		default RPMSG_SERVICE_MODE_REMOTE
+
+	config IPM_MSG_CH_1_TX
+		default RPMSG_SERVICE_MODE_REMOTE
+
+	config IPM_MSG_CH_1_RX
+		default RPMSG_SERVICE_MODE_MASTER
+
+endif # RPMSG_SERVICE_DUAL_IPM_SUPPORT
+
+
+if BOARD_BLAATIND_CPUAPP
+		
+	choice BT_HCI_BUS_TYPE
+		default BT_RPMSG if BT
+	endchoice
+
+	config HEAP_MEM_POOL_SIZE
+		default 4096 if BT_RPMSG
+
+	config BT_HCI_VS
+		default y if BT
+
+endif
+
+if BOARD_BLAATIND_CPUNET
+
+	# BT_CTLR depends on BT. When BT is enabled we should default to also
+	# enabling the controller.
+	config BT_CTLR
+		default y if BT
+
+	config BT_ECC
+		default y if BT
 
 endif

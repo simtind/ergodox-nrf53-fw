@@ -1,0 +1,10 @@
+manifest:
+  remotes:
+    - name: ncs
+      url-base: https://github.com/nrfconnect
+  projects:
+    - name: nrf
+      repo-path: sdk-nrf
+      remote: ncs
+      revision: main
+      import: true

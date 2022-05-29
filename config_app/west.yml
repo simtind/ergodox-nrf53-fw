@@ -39,13 +39,5 @@ manifest:
       remote: simtind
       revision: simtind/blaatind-fixes
       import: app/west.yml
-    - name: nrf
-      repo-path: sdk-nrf
-      remote: ncs
-      revision: main
-      import:
-        name-blacklist:
-          - matter
-
   self:
     path: zmk/app

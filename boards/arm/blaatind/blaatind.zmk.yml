@@ -6,4 +6,4 @@ arch: arm
 outputs:
   - usb
   - ble
-exposes: [simtind_blaatind]
+exposes: [simtind_blaatind_cpuapp, simtind_blaatind_cpunet]

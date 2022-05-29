@@ -1,49 +1,70 @@
 # Copyright (c) 2020 The ZMK Contributors
 # SPDX-License-Identifier: MIT
 
+# Default stubs for properties originating in ZMK.
+if !ZMK
+    config ZMK_KEYBOARD_NAME
+        string
+
+    config ZMK_SPLIT_BLE_ROLE_CENTRAL
+        bool
+    config ZMK_SPLIT
+        bool
+
+    if !LVGL
+        config ZMK_DISPLAY_SIZE
+            int
+
+        config ZMK_DISPLAY_VDB_SIZE
+            int
+
+        config LV_DPI_DEF
+            int
+    endif 
+endif 
+
 if SHIELD_BLAATIND_LEFT
 
-	config ZMK_KEYBOARD_NAME
-		default "Blaatind"
+    config ZMK_KEYBOARD_NAME
+        default "Blaatind"
 
-	config ZMK_SPLIT_BLE_ROLE_CENTRAL
-		default y
+    config ZMK_SPLIT_BLE_ROLE_CENTRAL
+        default y
 
-	endif
+    endif
 
 if SHIELD_BLAATIND_LEFT || SHIELD_BLAATIND_RIGHT
 
-	config ZMK_SPLIT
-		default y
-	
-	if ZMK_DISPLAY
+    config ZMK_SPLIT
+        default y
+    
+    if ZMK_DISPLAY
 
-		config I2C
-			default y
+        config I2C
+            default y
 
-		config SSD1306
-			default y
+        config SSD1306
+            default y
 
-		config SSD1306_REVERSE_MODE
-			default y
+        config SSD1306_REVERSE_MODE
+            default y
 
-	endif # ZMK_DISPLAY
+    endif # ZMK_DISPLAY
 
-	if LVGL
+    if LVGL
 
-		config ZMK_DISPLAY_SIZE
-			default 4096
+        config ZMK_DISPLAY_SIZE
+            default 4096
 
-		config ZMK_DISPLAY_VDB_SIZE
-			default 64
+        config ZMK_DISPLAY_VDB_SIZE
+            default 64
 
-		config LV_DPI_DEF
-			default 148
+        config LV_DPI_DEF
+            default 148
 
-		choice LV_COLOR_DEPTH
-			default LV_COLOR_DEPTH_1
-		endchoice
+        choice LV_COLOR_DEPTH
+            default LV_COLOR_DEPTH_1
+        endchoice
 
-	endif # LVGL
-
+    endif # LVGL
 endif
