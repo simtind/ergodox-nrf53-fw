@@ -2,13 +2,13 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build_app:
-    uses: ./.github/workflows/build_image.yml@main
+    uses: ./.github/workflows/build_image.yml
     with:
       build_matrix_path: config_app/build.yaml
       config_path: config_app
       extra_cmake_args: -DBOARD_ROOT=\"C:/git/ergodox-nrf53-fw\"
   build_net:
-    uses: ./.github/workflows/build_image.yml@main
+    uses: ./.github/workflows/build_image.yml
     with:
       application: zephyr/samples/bluetooth/hci_rpmsg
       build_matrix_path: config_net/build.yaml
