@@ -6,11 +6,11 @@ jobs:
     with:
       build_matrix_path: config_app/build.yaml
       config_path: config_app
-      extra_cmake_args: -DBOARD_ROOT=\"C:/git/ergodox-nrf53-fw\"
+      extra_cmake_args: -DBOARD_ROOT=\"${GITHUB_WORKSPACE}\"
   build_net:
     uses: ./.github/workflows/build_image.yml
     with:
       application: zephyr/samples/bluetooth/hci_rpmsg
       build_matrix_path: config_net/build.yaml
       config_path: config_net
-      extra_cmake_args: -DBOARD_ROOT=\"C:/git/ergodox-nrf53-fw\"
+      extra_cmake_args: -DBOARD_ROOT=\"${GITHUB_WORKSPACE}\"
