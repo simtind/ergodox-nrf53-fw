@@ -24,6 +24,10 @@ endif
 config BOARD
 	default "blaatind_cpunet" if BOARD_BLAATIND_CPUNET
 
+choice CLOCK_CONTROL_NRF_SOURCE
+	default CLOCK_CONTROL_NRF_K32SRC_SYNTH
+endchoice
+
 config IPM_NRFX
 	default IPM
 
