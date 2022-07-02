@@ -1,0 +1,21 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: simtind
+      url-base: https://github.com/simtind
+    - name: ncs
+      url-base: https://github.com/nrfconnect
+  projects:
+    - name: nrf
+      repo-path: sdk-nrf
+      remote: simtind
+      revision: main
+      import: true
+    - name: zmk
+      remote: simtind
+      revision: simtind/zephyr-update
+      import:
+        file: app/west.yml
+        name-blocklist:
+          zephyr
